@@ -1,4 +1,4 @@
-﻿# 🔰AmazonS3をAWS Tools for Windows PowerShellから触ってみる
+# 🔰AmazonS3をAWS Tools for Windows PowerShellから触ってみる
 
 ## 🔰AWS Tools for Windows PowerShell のドキュメント
 
@@ -19,6 +19,7 @@ Get-S3Bucketで指定したアカウントに紐づくS3バケットの一覧を
 Get-S3Bucket -ProfileName **プロファイル名**
 ```
 
+▶S3バケットの検索  
 ![](image/get.s3bucket.png)
 
 ### 🔰S3オブジェクトの検索(Get-S3Object)
@@ -30,6 +31,7 @@ Get-S3Objectで指定したバケットのS3オブジェクトを取得できる
 Get-S3Object -ProfileName **プロファイル名** -BucketName **バケット名**
 ```
 
+▶S3バケットに格納されているオブジェクトの検索  
 ![](image/get.s3object.png)
 
 ### 🔰S3オブジェクトをローカルにダウンロード(Copy-S3Object)
@@ -46,7 +48,7 @@ Copy-S3Object -ProfileName **プロファイル名** -BucketName **バケット�
 Copy-S3Object -ProfileName **プロファイル名** -BucketName **バケット名 -key **キー名** -LocalFolder **ディレクトリパス**
 ```
 
-### 🔰Pre-Signed URを生成する(Get-S3PreSignedURL)
+### 🔰Pre-Signed URLを生成する(Get-S3PreSignedURL)
 
 S3のオブジェクトに期限付きurl(Pre-Signed URL)を生成する。
 
@@ -57,7 +59,10 @@ S3のオブジェクトに期限付きurl(Pre-Signed URL)を生成する。
 Get-S3PreSignedURL -ProfileName **プロファイル名** -BucketName **バケット名** -Key **キー名** -Expire (get-date).AddMinutes(3)
 ```
 
+▶Pre-SignedURLの生成  
 ![](image/get.s3presignedurl.png)
+
+***
 
 ## 🔰書き込み系
 
@@ -67,7 +72,10 @@ Get-S3PreSignedURL -ProfileName **プロファイル名** -BucketName **バケ�
 New-S3Bucket -ProfileName **プロファイル名** -Region **リージョン** -BucketName **バケット名**
 ```
 
+▶S3バケットの作成  
 ![](image/new.s3bucket.step001.png)
+
+▶作成したS3バケットの確認  
 ![](image/new.s3bucket.step002.png)
 
 ちなみに
@@ -85,7 +93,10 @@ New-Item -ItemType File -Path c:\temp\helloworld.txt -value "HelloWorld"
 Write-S3Object -ProfileName **プロファイル名** -Region **リージョン** -BucketName **バケット名** -File c:\temp\helloworld.txt
 ```
 
+▶ダミーファイルの作成とアップロード  
 ![](image/write.s3object.step001.png)
+
+▶S3バケットの確認  
 ![](image/write.s3object.step002.png)
 
 ### 🔰S3オブジェクトの削除(Remove-S3Object)
@@ -96,6 +107,7 @@ $result = Remove-S3Object -ProfileName **プロファイル名** -Region **リ�
 $result | FT *
 ```
 
+▶S3オブジェクトの削除  
 ![](image/remove.s3object.png)
 
 ### 🔰S3バケットの削除(Remove-S3Bucket)
@@ -104,8 +116,9 @@ $result | FT *
 Remove-S3Bucket -ProfileName **プロファイル名** -Region **リージョン** -BucketName **バケット名**
 ```
 
+▶S3バケットの削除  
 ![](image/remove.s3bucket.png)
 
-##　🔰総評
+## 🔰総評
 
 大量のファイルを取り扱う時は当たり前ですがCUIベースの方が便利ですね。
